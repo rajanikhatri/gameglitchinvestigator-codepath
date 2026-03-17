@@ -26,15 +26,18 @@ It wrote the code, ran away, and now the game is unplayable.
 ## 📝 Document Your Experience
 
 - [x] Describe the game's purpose.
-      The game is a number guessing game where the app picks a secret number and you try to guess it within a limited number of attempts. After each guess, the app gives a hint to guide you higher or lower.
+  - The game is a number guessing game where the app picks a secret number and you try to guess it within a limited number of attempts.
+  - After each guess, the app gives a hint to guide you higher or lower.
 
 - [x] Detail which bugs you found.
-      Bug 1 (Logic Bug): The hints were backwards — "Go HIGHER" appeared when the guess was too high, and "Go LOWER" when the guess was too low.
-      Bug 2 (Type Bug): On every even-numbered attempt, the secret number was converted to a string, causing a TypeError when comparing it to the integer guess. This made the game behave inconsistently.
+  - **Bug 1 (Logic Bug — Backwards Hints):** The `check_guess()` function had the hint messages swapped. When the player's guess was higher than the secret number, the app showed "Go HIGHER" (which would push the player further away). When the guess was lower, it showed "Go LOWER" (also wrong). This made it impossible to follow the hints and win.
+  - **Bug 2 (Type Bug — String Conversion on Even Attempts):** Inside the submit block, the code checked `if st.session_state.attempts % 2 == 0` and converted the secret number to a string on every even-numbered attempt (2nd, 4th, 6th click). This caused a `TypeError` when Python tried to compare an integer guess to a string secret. The game would fall into the `except TypeError` block in `check_guess()`, where the hints were also still backwards. So on even attempts, both the comparison and the hints were broken.
+  - **Bug 3 (State Bug — New Game Button Not Fully Resetting):** When the "New Game" button was clicked, it only reset `attempts` and `secret`. It did NOT reset `status`, `history`, or `score`. Since `status` was still set to `"won"` or `"lost"` from the previous game, the app would immediately hit `st.stop()` and block the submit button, making it impossible to play again without refreshing the entire page.
 
 - [x] Explain what fixes you applied.
-      Bug 1: Swapped the hint messages in `check_guess()` in `app.py` so "Go LOWER" shows when the guess is too high and "Go HIGHER" shows when the guess is too low.
-      Bug 2: Removed the even/odd attempt check that was converting the secret to a string. The secret is now always compared as an integer.
+  - **Bug 1:** The problem was in the `check_guess()` function — the messages were simply put in the wrong place. When your guess is too high, you need to go lower, and vice versa. The fix was to swap the two messages so each one appears in the correct condition.
+  - **Bug 2:** The code was intentionally converting the secret number from an integer to a string on every 2nd, 4th, and 6th attempt. Python cannot compare a number and a string directly, so it crashed silently into broken behavior. The fix was to remove that conversion entirely so the secret always stays as a number — which is what it should have been from the start.
+  - **Bug 3:** The "New Game" button was only resetting two things (attempts and secret) but forgetting to reset the game's status, score, and guess history. Because the status was still "won" or "lost", the app would immediately stop and block the player. The fix was to also reset `status` back to `"playing"`, clear the `history` list, and reset the `score` to 0 — so everything starts fresh like a real new game.
 
 ## 📸 Demo
 
