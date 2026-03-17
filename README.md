@@ -11,8 +11,8 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 🛠️ Setup
 
-1. Install dependencies: `pip install -r requirements.txt`
-2. Run the broken app: `python -m streamlit run app.py`
+1. Install dependencies: `pip3 install -r requirements.txt`
+2. Run the broken app: `python3 -m streamlit run app.py`
 
 ## 🕵️‍♂️ Your Mission
 
@@ -25,9 +25,16 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
-- [ ] Detail which bugs you found.
-- [ ] Explain what fixes you applied.
+- [x] Describe the game's purpose.
+      The game is a number guessing game where the app picks a secret number and you try to guess it within a limited number of attempts. After each guess, the app gives a hint to guide you higher or lower.
+
+- [x] Detail which bugs you found.
+      Bug 1 (Logic Bug): The hints were backwards — "Go HIGHER" appeared when the guess was too high, and "Go LOWER" when the guess was too low.
+      Bug 2 (Type Bug): On every even-numbered attempt, the secret number was converted to a string, causing a TypeError when comparing it to the integer guess. This made the game behave inconsistently.
+
+- [x] Explain what fixes you applied.
+      Bug 1: Swapped the hint messages in `check_guess()` in `app.py` so "Go LOWER" shows when the guess is too high and "Go HIGHER" shows when the guess is too low.
+      Bug 2: Removed the even/odd attempt check that was converting the secret to a string. The secret is now always compared as an integer.
 
 ## 📸 Demo
 
