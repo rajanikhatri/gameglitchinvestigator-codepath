@@ -55,8 +55,6 @@ def update_score(current_score: int, outcome: str, attempt_number: int):
         return current_score + points
 
     if outcome == "Too High":
-        if attempt_number % 2 == 0:
-            return current_score + 5
         return current_score - 5
 
     if outcome == "Too Low":
@@ -67,7 +65,6 @@ def update_score(current_score: int, outcome: str, attempt_number: int):
 st.set_page_config(page_title="Glitchy Guesser", page_icon="🎮")
 
 st.title("🎮 Game Glitch Investigator")
-st.caption("An AI-generated guessing game. Something is off.")
 
 st.sidebar.header("Settings")
 
@@ -160,8 +157,11 @@ elif submit:
     ok, guess_int, err = parse_guess(raw_guess)
 
     if not ok:
-        st.session_state.history.append(raw_guess)
+        st.session_state.attempts -= 1
         st.error(err)
+    elif guess_int < low or guess_int > high:
+        st.session_state.attempts -= 1
+        st.warning(f"Please enter a number between {low} and {high}.")
     else:
         st.session_state.history.append(guess_int)
 
@@ -207,4 +207,3 @@ with debug_placeholder.container():
         st.write("History:", st.session_state.history)
 
 st.divider()
-st.caption("Built by an AI that claims this code is production-ready.")
