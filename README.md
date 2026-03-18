@@ -74,4 +74,6 @@ All 8 tests pass, including 5 edge-case tests covering empty input, negative num
 
 The enhanced UI (`stretch/app_enhanced.py`) is a redesigned version of the game with a three-column layout and a light purple color theme. The left column has the player name input, difficulty selector buttons, and a password-protected developer access panel. The middle column shows a circular anime character image, the guessing game with a progress bar and hint toggle, and the full game logic. The right column displays a live leaderboard with medal rankings and a badge system that rewards the player for reaching milestones.
 
-- [ ] [If you choose to complete Challenge 4, insert a screenshot of your Enhanced Game UI here]
+Live app: https://gameglitchinvestigator-codepath-cgeyeud4zdeechbesyr3ou.streamlit.app/
+
+![Enhanced UI](Updated_UI.png)
