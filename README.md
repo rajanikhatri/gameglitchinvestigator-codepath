@@ -12,7 +12,7 @@ It wrote the code, ran away, and now the game is unplayable.
 ## 🛠️ Setup
 
 1. Install dependencies: `pip3 install -r requirements.txt`
-2. Run the broken app: `python3 -m streamlit run app.py`
+2. Run th app: `python3 -m streamlit run stretch/app_enhanced.py`
 
 ## 🕵️‍♂️ Your Mission
 
@@ -64,6 +64,14 @@ It wrote the code, ran away, and now the game is unplayable.
   ![Range Validation](screenshot_range_validation.png)
   
 
+## 🧪 Pytest Results
+
+All 8 tests pass, including 5 edge-case tests covering empty input, negative numbers, decimal input, non-numeric strings, and None values.
+
+![Pytest Results](pytest.png)
+
 ## 🚀 Stretch Features
+
+The enhanced UI (`stretch/app_enhanced.py`) is a redesigned version of the game with a three-column layout and a light purple color theme. The left column has the player name input, difficulty selector buttons, and a password-protected developer access panel. The middle column shows a circular anime character image, the guessing game with a progress bar and hint toggle, and the full game logic. The right column displays a live leaderboard with medal rankings and a badge system that rewards the player for reaching milestones.
 
 - [ ] [If you choose to complete Challenge 4, insert a screenshot of your Enhanced Game UI here]
