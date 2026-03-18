@@ -104,6 +104,17 @@ if "status" not in st.session_state:
 if "history" not in st.session_state:
     st.session_state.history = []
 
+if "difficulty_prev" not in st.session_state:
+    st.session_state.difficulty_prev = difficulty
+
+if st.session_state.difficulty_prev != difficulty:
+    st.session_state.secret = random.randint(low, high)
+    st.session_state.attempts = 0
+    st.session_state.score = 0
+    st.session_state.status = "playing"
+    st.session_state.history = []
+    st.session_state.difficulty_prev = difficulty
+
 st.subheader("Make a guess")
 
 # Reserve layout positions first
