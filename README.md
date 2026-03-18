@@ -56,7 +56,11 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📸 Demo
 
-- [ ] [Insert a screenshot of your fixed, winning game here]
+- [x] Winning the game:
+  ![Winning Game](screenshot_winning.png)
+
+- [x] Range validation in action (typing 100 on Easy mode):
+  ![Range Validation](screenshot_range_validation.png)
 
 ## 🚀 Stretch Features
 
